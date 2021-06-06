@@ -1,0 +1,25 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 150px 10px;
+    border: #1e824c 1px solid ;
+}
+.spacer{
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.user{
+    padding: 10px;
+    background-color: #1e824c;
+    color: #c8d1c6;
+}
+.company{
+    background-color: #c8d1c6;
+    color: #1e824c;
+}
+.size{
+    min-width: 300px;
+    
+}
