@@ -1,18 +1,31 @@
-<div class = 'row m-0 w-100'>
-    <div class = 'col-md-4 offset-4 mt-5' *ngIf = '!this.isLogin'>
-        <h4>Login</h4>
-        <form #myform = "ngForm" (ngSubmit) = "onSubmit(myform)" >
-            <div class = 'form-group'>
-                <input class = 'form-control' type = "text" name = "logUsername" placeholder = "Username" ngModel>
+<div class="container">
+    
+      
+    <div class = 'row m-0 w-100'>
+        <div class = 'col-md-4 offset-4 mt-5' *ngIf = '!this.isLogin'>
+            <div class="pill">
+                <button  class="pill-item {{showUser}}" (click)="userLogin()">{{userTitle}}</button>
+                <button class="pill-item {{showCompany}}" (click)="companyLogin()" >{{companyTitle}}</button>
             </div>
-            <div class = 'form-group'>
-                <input class = 'form-control' type = "password" name = "logPassword" placeholder = "Password" ngModel>
-            </div>
-            <input class= 'btn btn-outline-info' type = "submit" value = "Login">
-        </form>
+            <h4>Login</h4>
+            <form #myform = "ngForm" (ngSubmit) = "onSubmit(myform)" >
+                
+                <div class = 'form-group'>
+                    <input class = 'form-control' type = "text" name = "logUsername" placeholder = "{{placeHolder}}" ngModel>
+                </div>
+                <input [hidden]="true" class = 'form-control' type = "text" name = "logType"  ngModel="{{title}}">
+
+                <div class = 'form-group'>
+                    <input class = 'form-control' type = "password" name = "logPassword" placeholder = "Password" ngModel>
+                </div>
+                <input class= 'btn btn-outline-info' type = "submit" value = "Login">
+            </form>
+        </div>
+        <div class = 'col-md-4 offset-4 mt-5' *ngIf = 'this.isLogin'>
+            <h5>You are logged in</h5>
+        </div>
+        
     </div>
-    <div class = 'col-md-4 offset-4 mt-5' *ngIf = 'this.isLogin'>
-        <h1>You are logged in</h1>
-        <button class = 'btn btn-outline-info' (click) = 'logout()'>Log-out</button>
-    </div>
+    
 </div>
+

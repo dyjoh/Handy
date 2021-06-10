@@ -1,13 +1,12 @@
 <div class="container">
-    <div>
-        <button class="spacer user btn-lg btn-block size" (click)="onClick('user')">
-            User
-        </button> 
-    </div>
-    <div>
-        <button class="spacer company btn-lg btn-block size" (click)="onClick('company')">
-            Company
-        </button>
-    </div>
+    <div class="pill">
+        <button class="pill-item {{showUser}}" (click)="userRegister()">User</button>
+        <button class="pill-item {{showCompany}}" (click)="companyRegister()">Company</button>
+      </div>
+      
+      <app-register [hidden]="showUser"></app-register>
+      <app-company-register [hidden]="showCompany"></app-company-register>
     
 </div>
+<h3 class="quote">{{quote}}</h3>
+<button type="button" class="btn login">Login</button>

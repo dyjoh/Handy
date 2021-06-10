@@ -1,0 +1,8 @@
+
+.column {
+    float: left;
+    width: 50%;
+  }
+  .form-group, .types{
+      margin: 22px;
+  }

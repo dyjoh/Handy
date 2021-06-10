@@ -47,9 +47,14 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 //routes
 const userRoute = require('../routes/userRoutes');
+const companyRoute = require('../routes/companyRoutes');
+const loginRoute = require('../routes/loginRoutes');
+
 
 //route paths
 app.use("/user", userRoute);
+app.use("/company", companyRoute);
+app.use("/", loginRoute);
 
 app.get('/', middleware.requireLogin, (req, res, next) => {
 

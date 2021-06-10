@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../../../services/api.service'
 import { AuthService } from './../../../services/auth.service'
 import {NgForm} from '@angular/forms';
 import { Router } from '@angular/router';
-import { MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
+
+
 
 
 
@@ -11,7 +12,6 @@ import { MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
   selector: 'app-company-register',
   templateUrl: './company-register.component.html',
   styleUrls: ['./company-register.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 export class CompanyRegisterComponent implements OnInit {
 
@@ -20,11 +20,11 @@ export class CompanyRegisterComponent implements OnInit {
 
   //Company Types
   public companyTypes: Object[] = [
-    { Id: 'companyType1', Type: 'Cementing' },
-    { Id: 'companyType2', Type: 'Yard Care' },
-    { Id: 'companyType3', Type: 'Power Washing' },
-    { Id: 'companyType4', Type: 'Window' },
-    { Id: 'companyType5', Type: 'Home Improvement' }
+    { Id: 'Cementing', Type: 'Cementing' },
+    { Id: 'Yard Care', Type: 'Yard Care' },
+    { Id: 'Power Washing', Type: 'Power Washing' },
+    { Id: 'Window', Type: 'Window' },
+    { Id: 'Home Improvement', Type: 'Home Improvement' }
 ];
 
 // maps the appropriate column to fields property

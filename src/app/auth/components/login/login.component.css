@@ -1,0 +1,52 @@
+.container{
+    background-color: #f0fff0;
+    max-width: 650px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 150px 10px;
+    border: #1e824c 1px solid ;
+    position: relative;
+    border-top-left-radius: 60px;
+    border-bottom-left-radius: 60px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    left: 200px;
+    margin-top: 50px;
+}
+.pill{
+    display: flex;
+    overflow: hidden;
+    border: 1px solid #49927c;
+    background-color: #cfffc1;
+    max-width: 150px;
+    max-height: 50px;
+    border-radius: 60px;
+    position: absolute;
+    top: 8px;
+    right: 16px;
+}
+.pill-item{
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 10px;
+    min-width: 75px;
+    min-height: 15px;
+    border-radius: 60px;
+    
+
+
+}
+
+.pill-item:hover {
+    cursor: pointer;
+  }
+.false{
+    pointer-events: none;
+    background-color: #1e824c ;
+}
