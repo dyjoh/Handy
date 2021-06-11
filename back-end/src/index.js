@@ -8,6 +8,18 @@ const bodyParser = require('body-parser');
 const app = express();
 const multer = require("multer");
 var cors = require('cors');
+var cookieSession = require("cookie-session");
+app.set('trust proxy', 1)
+app.use(
+    cookieSession({
+      name: "__session",
+      keys: ["key1"],
+        maxAge: 24 * 60 * 60 * 100,
+        secure: true,
+        httpOnly: true,
+        sameSite: 'none'
+    })
+);
 
 app.use(cors());
 

@@ -6,9 +6,146 @@ header,
 }
 
 #intro {
-    background: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img%20%283%29.jpg")no-repeat center center fixed;
+    background: url("../../../../assets/images/header.png") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
+
+.honey-dew{
+    color: #cfffc1;
+
+}
+
+.header-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 80%;
+    height: 700px;
+}
+
+.heading{
+    color: #fff ; 
+    font-size: 50px;
+    letter-spacing: 10px;
+}
+
+.divider{
+    height: 5px;
+    width: 900px;
+   background-color: black;
+    
+}
+
+.description{
+    color: #cfffc1 ;
+    font-size: 25px;
+    
+}
+
+.sign-buttons{
+    display: inline;
+}
+
+.sign-buttons button{
+    min-width: 150px;
+    margin: 5px 30px;
+}
+.sign-buttons button:hover{
+    margin-bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.411);
+}
+
+.image {
+    position: relative;
+    display: inline-block;
+    border: 0;
+    outline: 0;
+    z-index: -1;
+}
+
+    .image img {
+        display: block;
+        width: 100%;
+    }
+
+    .image.fit {
+        display: block;
+        width: 100%;
+    }
+
+    .image.featured {
+        display: block;
+        width: 100%;
+        margin: 0 0 4em 0;
+    }
+    .carasouel-container{
+        position: relative;
+    }
+    .btn-pos{
+        position: absolute;
+        bottom: 175px;
+        z-index: 3;
+    }
+    .button-nav .btn{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #1e824c;
+    }
+    .btn-right{
+        position: absolute;
+        right: -10px;
+    }
+    .btn-left{
+        position: absolute;
+        left: -10px;
+    }
+
+#contact{
+    width: 100%;
+    background-color: #20241f;
+
+}
+
+.page-footer{
+    width: 100%;
+    background-color: #20241f;
+}
+.container-fluid{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.socials-container{
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.socials-container .fab{
+    margin: 2px 15px
+}
+
+.login{
+    background-color: #1e824c; 
+    color: #fff;
+}
+.register{
+    background-color: #f0fff0; 
+    color: #49927c;
+}
+
+.content-container{
+    background-color: #fff;
+}
+
+
