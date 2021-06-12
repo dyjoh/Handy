@@ -7,50 +7,36 @@ const Company = require('../models/CompanySchema')
 
 
 
-router.post("/register", async (req, res, next) => {
-    console.log(req.body)
-    const {email, password, passwordConf, companyName, companyTypes, companyDescription } = req.body;
-    let errors = [];
-    
+
+
+  router.post("/register", async (req, res, next) => {
+
+    const {email, password, passwordConf, companyName, companyTypes, companyDescription, companyAddress, zipCode, state } = req.body;
+
+
     var payload = req.body;
-    var company = await Company.findOne({
-      $or: [
-        { companyName: companyName },
-        { email: email }
-      ]
-    }).catch((e) =>{
-      errors.push({msg: "Something went wrong"})
-    })
+
+    if(companyTypes && companyDescription && companyName && email && password && passwordConf && companyAddress && zipCode && state) {
+        var user = await Company.findOne({
+            $or: [
+                { companyname: companyName },
+                { email: email }
+            ]
+        })
+        .catch((error) => {
+            console.log(error);
+            payload.errorMessage = "Something went wrong.";
+            res.send(payload)
+        });
+
+        if(user == null) {
+            // No company found
+            var data = req.body;
+            const newCompany = new Company(data);
+      const token = jwt.sign({ _id: newCompany._id.toString() }, 'wecanfixitwithhandy')
+
+      data.tokens = await newCompany.tokens.concat({ token })
   
-    if(company){
-      if(company.email === email){
-        errors.push({msg: "Email already registered"})
-      }
-      
-      if(company.companyName === companyName){
-        errors.push({msg: "Username already exists"})
-      }
-    }
-    //checks required 
-    if(!email || !password || !passwordConf || !companyName || !companyTypes || !companyDescription){
-      errors.push({msg: 'Please fill in all fields'})
-    }
-  
-    if(password !== passwordConf){
-      errors.push({msg: "Passwords do not match"})
-    }
-  
-    if(errors.length > 0){
-      console.log(req.body);
-      payload.errors = errors;
-      res.send( payload);
-    }
-    else{
-      
-      
-      var data = req.body
-      const newCompany = new Company(data);
-        
   
         //hash password bcrypt
         bcrypt.genSalt(10, (err, salt) =>{
@@ -60,66 +46,34 @@ router.post("/register", async (req, res, next) => {
             }
             //set password to hashed
             newCompany.password = hash
-  
-            //save company
-            newCompany.save().then((company) => {
-              req.flash('success_msg', "You are now registered now can log in");
-              return res.redirect("company/login")
-            }).catch((e) => {
-              res.status(500).send(e)
+            
+            
+            //save user
+            Company.create(newCompany)
+            .then((company) => {
+                req.session.user = user;
+                return res.send({status:1, data: company, token: token })
             })
           })
         })
-  
-  
-      
-      
-    }
-      
-  })
 
-  
-  router.post('/login', async (req, res, next) => {
-    var payload = req.body;
-  
-    const {logUsername, logPassword } = req.body;
-    let errors = [];
+           
+        }
+        else {
+            // company found
+            if (email == company.email) {
+                payload.errorMessage = "Email already in use.";
+            }
+            else {
+                payload.errorMessage = "Company Name already in use.";
+            }
+            return res.status(200).send(payload);
+        }
+    }
+    else {
+        payload.errorMessage = "Make sure each field has a valid value.";
+        return res.status(200).send(payload);
+    }
+}) 
 
-    var user = await User.findOne({
-      $or: [
-        { username: logUsername },
-        { email: logUsername }
-      ]
-    }).catch((e) =>{
-      errors.push({msg: "Something went wrong"})
-    })
-  
-    if(!logPassword && !logUsername){
-      errors.push({msg: "Please fill out all fields"})
-    }
-    if(!user){
-      errors.push({msg: "Email or Username is not Registered"})
-    }
-  
-    if(errors.length > 0){
-      console.log(errors);
-      payload.errors = errors;
-      res.send(payload);
-    }
-    else{
-      const isMatch = await bcrypt.compare(logPassword, user.password)
-  
-      if(isMatch === true){
-        req.session.user = user
-        return res.redirect('/')
-      }
-      
-      errors.push({msg: "Username, email, or password incorrect"})
-      payload.errors = errors;
-      res.send(payload);
-  
-      
-    }
-  })
-  
   module.exports = router;

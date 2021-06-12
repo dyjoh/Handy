@@ -1,5 +1,5 @@
 <div class = 'row m-0 w-100'>
-    <div class = 'col-md-12' *ngIf = '!this.isLogin'>
+    <div class = 'col-md-12' >
         <h4>Register</h4>
         <form #myform = "ngForm" (ngSubmit) = "onSubmit(myform)" >
             <div class="column">
@@ -28,7 +28,5 @@
             <input class= 'btn btn-outline-info' type = "submit" value = "Register">
         </form>
     </div>
-    <div class = 'col-md-4 offset-4 mt-5' *ngIf = 'this.isLogin'>
-        <h5>You are logged in</h5>
-    </div>
+    
 </div>

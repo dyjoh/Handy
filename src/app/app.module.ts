@@ -22,13 +22,13 @@ import { HomeComponent } from './auth/components/home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent
+    AppComponent
+    
     
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    
     RouterModule,
     AuthModule,
     FormsModule,

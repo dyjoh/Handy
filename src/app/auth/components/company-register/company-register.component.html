@@ -1,6 +1,6 @@
 <div class = 'row '>
 
-    <div class = 'col-md-12' *ngIf = '!this.isLogin'>
+    <div class = 'col-md-12' >
         <h4>Company Register</h4>
         <form #myform = "ngForm" (ngSubmit) = "onSubmit(myform)" >
             <div class="column">
@@ -12,7 +12,21 @@
                 </div>
                 <div class = 'form-group'>
                     <input class = 'form-control' type = "email" name = "email" placeholder = "Email" ngModel>
+
                 </div>
+                <div class = 'form-group'>
+                    <input class = 'form-control' type = "text" name = "companyAddress" placeholder = "Address" ngModel>
+                </div>
+                <mat-form-field class="us-states">
+                    <mat-label>Select profile</mat-label>
+                    <mat-select [(value)]="selectedState" name='state' ngModel>
+                      <mat-option *ngFor="let state of usStates" [value]="state.name">
+                        {{ state.abbreviation }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  
+                  
             </div>
             <div class="column">
                 <div id='content' class="types">
@@ -20,8 +34,7 @@
                     
                     <ejs-multiselect id='localData' #local [dataSource]='companyTypes' [fields]='fields' [placeholder]='localWaterMark' name="companyTypes" class="" ngModel></ejs-multiselect>
                     </div>
-                
-                </div>
+                    
 
                 <div class = 'form-group'>
                     <input class = 'form-control' type = "password" name = "password" placeholder = "Password" ngModel>
@@ -29,13 +42,20 @@
                 <div class = 'form-group'>
                     <input class = 'form-control' type = "password" name = "passwordConf" placeholder = "Confirm Password" ngModel>
                 </div>
+
+                <div class = 'form-group'>
+                    <input class = 'form-control' type = "number" name = "zipCode" placeholder = "Zip Code" ngModel>
+                </div>
+            
             </div>
+                
+            </div>
+            
+           
             <input class= 'btn btn-outline-info' type = "submit" value = "Register">
         </form>
     </div>
-    <div class = 'col-md-4 offset-4 mt-5' *ngIf = 'this.isLogin'>
-        <h5>You are logged in</h5>
-    </div>
+    
 
 </div>
     

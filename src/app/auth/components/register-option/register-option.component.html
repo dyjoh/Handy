@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container col-md-8">
     <div class="pill">
         <button class="pill-item {{showUser}}" (click)="userRegister()">User</button>
         <button class="pill-item {{showCompany}}" (click)="companyRegister()">Company</button>
@@ -8,5 +8,5 @@
       <app-company-register [hidden]="showCompany"></app-company-register>
     
 </div>
-<h3 class="quote">{{quote}}</h3>
-<button type="button" class="btn login">Login</button>
+<h3 class="quote col-md-3">{{quote}}</h3>
+<button type="button" class="btn login" routerLink="/login">Login</button>

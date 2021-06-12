@@ -2,7 +2,7 @@
     
       
     <div class = 'row m-0 w-100'>
-        <div class = 'col-md-4 offset-4 mt-5' *ngIf = '!this.isLogin'>
+        <div class = 'col-md-4 offset-4 mt-5' >
             <div class="pill">
                 <button  class="pill-item {{showUser}}" (click)="userLogin()">{{userTitle}}</button>
                 <button class="pill-item {{showCompany}}" (click)="companyLogin()" >{{companyTitle}}</button>
@@ -21,9 +21,7 @@
                 <input class= 'btn btn-outline-info' type = "submit" value = "Login">
             </form>
         </div>
-        <div class = 'col-md-4 offset-4 mt-5' *ngIf = 'this.isLogin'>
-            <h5>You are logged in</h5>
-        </div>
+        
         
     </div>
     

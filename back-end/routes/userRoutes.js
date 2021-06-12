@@ -7,50 +7,41 @@ const User = require('../models/UserSchema')
 
 
 
+
+  
+
 router.post("/register", async (req, res, next) => {
-    console.log(req.body)
-    const {email, password, passwordConf, firstName, lastName, username } = req.body;
-    let errors = [];
-    
+
+    var firstName = req.body.firstName.trim();
+    var lastName = req.body.lastName.trim();
+    var username = req.body.username.trim();
+    var email = req.body.email.trim();
+    var password = req.body.password;
+    var passwordConf = req.body.passwordConf;
+
     var payload = req.body;
-    var user = await User.findOne({
-      $or: [
-        { username: username },
-        { email: email }
-      ]
-    }).catch((e) =>{
-      errors.push({msg: "Something went wrong"})
-    })
+
+    if(firstName && lastName && username && email && password && passwordConf) {
+        var user = await User.findOne({
+            $or: [
+                { username: username },
+                { email: email }
+            ]
+        })
+        .catch((error) => {
+            console.log(error);
+            payload.errorMessage = "Something went wrong.";
+            res.send(payload)
+        });
+
+        if(user == null) {
+            // No user found
+            var data = req.body;
+            const newUser = new User(data);
+      const token = jwt.sign({ _id: newUser._id.toString() }, 'wecanfixitwithhandy')
+
+      data.tokens = await newUser.tokens.concat({ token })
   
-    if(user){
-      if(user.email === email){
-        errors.push({msg: "Email already registered"})
-      }
-      
-      if(user.username === username){
-        errors.push({msg: "Username already exists"})
-      }
-    }
-    //checks required 
-    if(!email || !password || !passwordConf || !firstName || !lastName || !username){
-      errors.push({msg: 'Please fill in all fields'})
-    }
-  
-    if(password !== passwordConf){
-      errors.push({msg: "Passwords do not match"})
-    }
-  
-    if(errors.length > 0){
-      console.log(req.body);
-      payload.errors = errors;
-      res.send( payload);
-    }
-    else{
-      
-      
-      var data = req.body
-      const newUser = new User(data);
-        
   
         //hash password bcrypt
         bcrypt.genSalt(10, (err, salt) =>{
@@ -60,66 +51,35 @@ router.post("/register", async (req, res, next) => {
             }
             //set password to hashed
             newUser.password = hash
-  
+            
+            
             //save user
-            newUser.save().then((user) => {
-              req.flash('success_msg', "You are now registered now can log in");
-              return res.redirect("user/login")
-            }).catch((e) => {
-              res.status(500).send(e)
+            User.create(newUser)
+            .then((user) => {
+                req.session.user = user;
+                return res.send({status:1, data: user, token: token })
             })
           })
         })
-  
-  
-      
-      
-    }
-      
-  })
 
-  
-  router.post('/login', async (req, res, next) => {
-    var payload = req.body;
-  
-    const {logUsername, logPassword } = req.body;
-    let errors = [];
+           
+        }
+        else {
+            // User found
+            if (email == user.email) {
+                payload.errorMessage = "Email already in use.";
+            }
+            else {
+                payload.errorMessage = "Username already in use.";
+            }
+            return res.status(200).send(payload);
+        }
+    }
+    else {
+        payload.errorMessage = "Make sure each field has a valid value.";
+        return res.status(200).send(payload);
+    }
+})
 
-    var user = await User.findOne({
-      $or: [
-        { username: logUsername },
-        { email: logUsername }
-      ]
-    }).catch((e) =>{
-      errors.push({msg: "Something went wrong"})
-    })
-  
-    if(!logPassword && !logUsername){
-      errors.push({msg: "Please fill out all fields"})
-    }
-    if(!user){
-      errors.push({msg: "Email or Username is not Registered"})
-    }
-  
-    if(errors.length > 0){
-      console.log(errors);
-      payload.errors = errors;
-      res.send(payload);
-    }
-    else{
-      const isMatch = await bcrypt.compare(logPassword, user.password)
-  
-      if(isMatch === true){
-        req.session.user = user
-        return res.redirect('/')
-      }
-      
-      errors.push({msg: "Username, email, or password incorrect"})
-      payload.errors = errors;
-      res.send(payload);
-  
-      
-    }
-  })
   
   module.exports = router;

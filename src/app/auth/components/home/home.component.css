@@ -52,6 +52,7 @@ header,
 }
 
 .sign-buttons button{
+    
     min-width: 150px;
     margin: 5px 30px;
 }
@@ -91,7 +92,7 @@ header,
         bottom: 175px;
         z-index: 3;
     }
-    .button-nav .btn{
+    .buttons-nav .btn{
         width: 50px;
         height: 50px;
         border-radius: 50%;

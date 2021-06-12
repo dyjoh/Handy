@@ -28,6 +28,7 @@ export class RegisterComponent implements OnInit {
       console.log('Your form data : ', form.value);
 
       this._api.postTypeRequest('user/register', form.value).subscribe((res: any) => {
+        console.log(res.status)
       if (res.status) {
         console.log(res)
         this._auth.setDataInLocalStorage('userData', JSON.stringify(res.data));

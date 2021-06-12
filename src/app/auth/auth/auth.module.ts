@@ -3,13 +3,17 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from '../components/login/login.component'
 import { CompanyRegisterComponent } from '../components/company-register/company-register.component';
 import { RegisterOptionComponent } from '../components/register-option/register-option.component';
-
 import { BrowserModule } from '@angular/platform-browser';
 
 import { RegisterComponent } from '../components/register/register.component'
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
+import { MatOptionModule, } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { HomeComponent } from '../components/home/home.component';
+
 
 
 
@@ -18,15 +22,19 @@ import { MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
   LoginComponent,
   RegisterComponent,
   RegisterOptionComponent,
-  CompanyRegisterComponent
+  CompanyRegisterComponent,
+  HomeComponent
   
   ],
   imports: [
   CommonModule,
   BrowserModule,
+  AppRoutingModule,
   FormsModule,
   HttpClientModule,
-  MultiSelectAllModule
+  MultiSelectAllModule,
+  MatOptionModule,
+  MatSelectModule
   ],
   exports : [
   LoginComponent,
