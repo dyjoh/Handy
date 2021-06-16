@@ -5,3 +5,23 @@
   .form-group{
       margin: 22px;
   }
+
+
+.btn{
+    display: block;
+    background-color: #49927c;
+    color: #cfffc1;
+    border: rgb(18, 32, 16) 1px solid;
+    margin: 10px auto;
+    width: 80%;
+}
+
+.btn:hover{
+    background-color: #cfffc1;
+    color: #49927c;
+}
+.user-register{
+    color:#49927c;
+    text-align: center;
+    font-size: 25px;
+}

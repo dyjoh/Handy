@@ -1,0 +1,36 @@
+main, .header-container{
+    background-color: #fff;
+}
+#intro {
+    min-height: 100%;
+    background: url("../../../../assets/images/header.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 750px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-container{
+    width: 1000px;
+    height: 600px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    
+    
+}
+
+.header-container h2 {
+    font-size: 35px;
+}
+
+.header-container h3 {
+    font-size: 30px;
+}

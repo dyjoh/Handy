@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   userTitle: string = "User"
   companyTitle: string = "Company"
   title: string = "user"
+  text: string = "User Login"
   constructor(
     private _api: ApiService,
     private _auth: AuthService,
@@ -36,6 +37,8 @@ export class LoginComponent implements OnInit {
     this.showCompany = false;
     this.placeHolder = "Company Name or Email";
     this.title = "company";
+    this.text = "Company Login"
+
   }
 
   userLogin(){
@@ -43,21 +46,23 @@ export class LoginComponent implements OnInit {
     this.showUser = false;
     this.placeHolder = "Username or Email";
     this.title = "user"
+    this.text = "User Login"
   }
 
   onSubmit(form: NgForm){
     
-    console.log("form data: ", form.value);
-    if(this.showUser){
+    if(!this.showUser){
       this._api.postTypeRequest('login', form.value).subscribe((res: any) => {
         if(res.status){
-          console.log(res);
+          console.log(form.value.logUsername);
+
+          this._auth.setUsername(form.value.logUsername);
   
           this._auth.setDataInLocalStorage("userData", JSON.stringify(res.data));
   
           this._auth.setDataInLocalStorage('token', res.token);
   
-          this._router.navigate([''])
+          this._router.navigate(['user/home'])
   
   
   
@@ -68,15 +73,16 @@ export class LoginComponent implements OnInit {
         this.errorMessage = err['error'].message;
         });
     }
-    if(this.showCompany){this._api.postTypeRequest('login', form.value).subscribe((res: any) => {
+    if(!this.showCompany){this._api.postTypeRequest('login', form.value).subscribe((res: any) => {
       if(res.status){
-        console.log(res);
 
         this._auth.setDataInLocalStorage("userData", JSON.stringify(res.data));
 
         this._auth.setDataInLocalStorage('token', res.token);
 
-        this._router.navigate([''])
+        this._auth.setUsername(form.value.logUsername);
+
+        this._router.navigate(['company/home']);
 
 
 
@@ -94,7 +100,6 @@ export class LoginComponent implements OnInit {
   }
 
   isUserLogin(){
-      console.log(this._auth.getUserDetails())
       if(this._auth.getUserDetails() != null){
         this.isLogin = true;
       }

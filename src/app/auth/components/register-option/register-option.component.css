@@ -30,15 +30,21 @@ body{
     border-bottom-left-radius: 0px;
 }
 .login{
-    position: relative;
-    bottom: 185px;
-    left: 250px;
+    
     background-color: #f0fff0; 
     color: #49927c;
 }
 .quote{
     font-size: 25px;
     color: #49927c;
+    
+}
+.quote-container{
+    display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     position: relative;
     bottom: 185px;
     left: 110px;

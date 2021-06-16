@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
+
   constructor() { }
 
   getUserDetails() {
@@ -19,5 +20,22 @@ export class AuthService {
     clearStorage() {
       localStorage.clear();
     }
+
+    setUsername(username:string){
+      localStorage.setItem("id", username);
+
+    }
+
+    getUsername(){
+
+      
+      const username: any = (localStorage.getItem("id"));
+      console.log(username)
+      return username
+    }
+
+    removeByteOrderMark(str: string ){
+      return str.replace(/^\ufeff/g,"")
+  }
     
 }

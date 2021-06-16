@@ -19,7 +19,6 @@ export class ApiService {
   }
 
   postTypeRequest(url: string, payload: any){
-    console.log(`${this.baseUrl}${url}`);
     return this._http.post(`${this.baseUrl}${url}`, payload).pipe(map(res => {
       return res;
       }));

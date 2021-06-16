@@ -2,7 +2,24 @@ html,
 body,
 header,
 #intro {
-    height: 100%;
+    min-height: 100%;
+}
+
+
+
+ol{
+    width: 69%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ol li {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 #intro {
@@ -44,6 +61,13 @@ header,
 .description{
     color: #cfffc1 ;
     font-size: 25px;
+    
+}
+
+.description-acc{
+    color: #cfffc1 ;
+    font-size: 20px;
+    
     
 }
 
@@ -92,23 +116,26 @@ header,
         bottom: 175px;
         z-index: 3;
     }
-    .buttons-nav .btn{
+    .carousel-control-next, .carousel-control-prev{
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        
         background-color: #1e824c;
     }
-    .btn-right{
+
+    .right{
         position: absolute;
-        right: -10px;
+        top: 50%;
+        right: 8%; 
     }
-    .btn-left{
+
+    .left{
         position: absolute;
-        left: -10px;
+        top: 50%;
+        left: 8%; 
     }
+    
 
 #contact{
     width: 100%;
@@ -148,5 +175,27 @@ header,
 .content-container{
     background-color: #fff;
 }
+
+.carousel-inner{
+    display: block;
+    text-align: center;
+    
+
+}
+.carousel-indicators li {
+    background-color: #999;
+    background-color: rgba(70, 70, 70, 0.25);
+  }
+  
+  .carousel-indicators .active {
+    background-color: #444;
+  }
+
+.carasouel-item img{
+    max-height: 630px;
+    min-height: 630px;
+}
+
+
 
 

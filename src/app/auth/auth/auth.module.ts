@@ -13,6 +13,8 @@ import { MatOptionModule, } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HomeComponent } from '../components/home/home.component';
+import { UserHomeComponent } from '../components/user-home/user-home.component';
+import { CompanyHomeComponent } from '../components/company-home/company-home.component';
 
 
 
@@ -23,7 +25,9 @@ import { HomeComponent } from '../components/home/home.component';
   RegisterComponent,
   RegisterOptionComponent,
   CompanyRegisterComponent,
-  HomeComponent
+  HomeComponent,
+  UserHomeComponent,
+  CompanyHomeComponent
   
   ],
   imports: [

@@ -7,6 +7,8 @@
       <app-register [hidden]="showUser"></app-register>
       <app-company-register [hidden]="showCompany"></app-company-register>
     
+</div >
+<div class="quote-container col-4">
+  <h3 class="quote d-md-none d-sm-none d-lg-block">{{quote}}</h3>
+  <button type="button " class="btn login d-md-none d-sm-none d-lg-block" routerLink="/login">Login</button>
 </div>
-<h3 class="quote col-md-3">{{quote}}</h3>
-<button type="button" class="btn login" routerLink="/login">Login</button>

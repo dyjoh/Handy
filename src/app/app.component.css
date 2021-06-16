@@ -18,4 +18,20 @@ nav a {
     
     
   }
+.navbar-toggler{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.navbar-toggler-icon{
+    color: #eeeeee;
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    
+    
+
+}
   

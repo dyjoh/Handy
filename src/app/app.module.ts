@@ -14,7 +14,7 @@ import { MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTabsModule, MAT_TAB_GROUP } from '@angular/material/tabs';
-import { HomeComponent } from './auth/components/home/home.component'; 
+ 
 
 
 
@@ -22,7 +22,8 @@ import { HomeComponent } from './auth/components/home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+  
     
     
   ],

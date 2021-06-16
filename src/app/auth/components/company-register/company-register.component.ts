@@ -3,6 +3,7 @@ import { ApiService } from './../../../services/api.service'
 import { AuthService } from './../../../services/auth.service'
 import {NgForm} from '@angular/forms';
 import { Router } from '@angular/router';
+import {faWrench} from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -17,6 +18,7 @@ export class CompanyRegisterComponent implements OnInit {
 
   isLogin: boolean = false;
   errorMessage!: string;
+  faWrench = faWrench
 
   //Company Types
   public companyTypes: Object[] = [
@@ -292,16 +294,13 @@ public default : string = 'Default';
   }
 
   onSubmit(form: NgForm) {
-      console.log('Your form data : ', form.value);
 
       this._api.postTypeRequest('company/register', form.value).subscribe((res: any) => {
       if (res.status) {
-        console.log(res)
         this._auth.setDataInLocalStorage('userData', JSON.stringify(res.data));
         this._auth.setDataInLocalStorage('token', res.token);
         this._router.navigate(['login']);
       } else {
-        console.log(res)
         alert(res.msg)
       }
       }, err => {
