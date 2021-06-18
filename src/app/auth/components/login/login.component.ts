@@ -3,6 +3,8 @@ import {NgForm} from '@angular/forms'
 import { ApiService} from '../../../services/api.service'
 import { AuthService} from '../../../services/auth.service'
 import { Router } from '@angular/router';
+import { UiService } from 'src/app/services/ui.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -20,12 +22,20 @@ export class LoginComponent implements OnInit {
   companyTitle: string = "Company"
   title: string = "user"
   text: string = "User Login"
+  subscription!: Subscription;
+  userLoggedIn!: boolean;
+  successful: boolean= false;
+
   constructor(
     private _api: ApiService,
     private _auth: AuthService,
     private _router: Router,
-    private _elementRef: ElementRef
-  ) { }
+    private _elementRef: ElementRef,
+    private _uiService: UiService 
+  ) {
+    this.subscription = this._uiService.onToggle().subscribe((value) => (this.userLoggedIn = value))
+
+   }
 
   ngOnInit(): void {
     this.isUserLogin();
@@ -56,13 +66,15 @@ export class LoginComponent implements OnInit {
         if(res.status){
           console.log(form.value.logUsername);
 
+          this.successful = true;
+
           this._auth.setUsername(form.value.logUsername);
   
           this._auth.setDataInLocalStorage("userData", JSON.stringify(res.data));
   
           this._auth.setDataInLocalStorage('token', res.token);
   
-          this._router.navigate(['user/home'])
+          this._router.navigate(['user/home']);
   
   
   
@@ -107,6 +119,14 @@ export class LoginComponent implements OnInit {
     logout(){
       this._auth.clearStorage()
       this._router.navigate(['']);
+    }
+
+
+    userLogIn(){
+      if(this.successful){
+        this._uiService.userLogIn();
+        this.successful = false;
+      }
     }
 
 }

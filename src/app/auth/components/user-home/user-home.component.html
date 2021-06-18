@@ -1,7 +1,23 @@
 <header>
     <!--Mask-->
     <div id="intro" class="view">
-    
+        <div id="mySidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">×</a>
+            <div class="coverPhotoSection">
+                <div class="userImageContainer">
+                    <img src="../../../../assets/images/pic12.png" alt="">
+                </div>
+            </div>
+            <a href="#"><i class="fas fa-user-cog"></i> Account</a>
+            <a href="#"  [routerLink] = "['']"><i class="fas fa-sign-out-alt" (click)="userLogIn()"></i> Logout</a>
+            
+          </div>
+          
+          <div id="main">
+            <button class="openbtn" (click)="openNav()">
+                <img src="../../../../assets/images/pic12.png" alt="">
+            </button>  
+          </div>
         <div class="mask rgba-black-strong">
     
             <div class="container-fluid d-flex align-items-center justify-content-center h-100">
