@@ -58,9 +58,10 @@ const jwt = require("jsonwebtoken");
       if(isMatch === true){
         req.session.user = user
         const token = jwt.sign({ _id: user._id.toString() }, 'wecanfixitwithhandy')
-
         user.tokens = await user.tokens.concat({ token })
-        return res.send({status: 1, data: payload, token: token})
+        await user.save()
+
+        return res.send({status: 1, data: payload, token: token, location:"user/home"})
       }
       
       errors.push({msg: "Username, email, or password incorrect"})

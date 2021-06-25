@@ -6,7 +6,31 @@ const bcrypt = require("bcryptjs")
 const Company = require('../models/CompanySchema')
 
 
+router.get("/", async (req, res, next) => {
+  var searchObj = req.query;
+  console.log(req.body)
 
+  if(req.query.search !== undefined) {
+      searchObj = {
+          $or: [
+              { companyName: { $regex: req.query.search, $options: "i" }},
+              { companyAddress: { $regex: req.query.search, $options: "i" }},
+              { zipCode: { $regex: req.query.search, $options: "i" }},
+              { state: { $regex: req.query.search, $options: "i" }},
+
+          ]
+      }
+  }
+
+  Company.find(searchObj)
+  .then(results =>{ 
+    res.status(200).send(results)
+})
+  .catch(error => {
+      console.log(error);
+      res.sendStatus(400);
+  })
+});
 
 
   router.post("/register", async (req, res, next) => {

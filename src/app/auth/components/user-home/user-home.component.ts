@@ -14,6 +14,7 @@ import { UiService } from 'src/app/services/ui.service';
 export class UserHomeComponent implements OnInit {
   subscription!: Subscription;
   userLoggedIn!: boolean;
+  errorMessage!: string;
 
   constructor(
     private _api: ApiService,
@@ -62,6 +63,18 @@ export class UserHomeComponent implements OnInit {
 
   userLogIn(){
     this._uiService.userLogIn();
+  }
+
+  logOut(){
+    this._api.postTypeRequest('user/logout', null).subscribe((res: any) => {
+      if(res.status){
+        this._router.navigate([res.location])
+
+      }
+      
+    }, err => {
+        this.errorMessage = err['error'].message;
+        });
   }
 
   

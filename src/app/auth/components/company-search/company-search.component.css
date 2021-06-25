@@ -1,0 +1,21 @@
+.searchBarContainer {
+    position: relative;
+    color: rgb(101, 119, 134);
+    padding: 10px 15px;
+}
+
+.searchBarContainer i {
+    position: absolute;
+    top: 20px;
+    left: 28px;
+}
+
+.searchBarContainer #searchBox {
+    height: 36px;
+    width: 100%;
+    padding: 5px 15px 5px 40px;
+    border-radius: 50px;
+    background-color:rgb(230, 236, 240);
+    border: none;
+    color: rgb(101, 119, 134);
+}

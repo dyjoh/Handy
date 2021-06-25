@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
   
           this._auth.setDataInLocalStorage('token', res.token);
   
-          this._router.navigate(['user/home']);
+          this._router.navigate([res.location])
   
   
   
@@ -91,6 +91,8 @@ export class LoginComponent implements OnInit {
         this._auth.setDataInLocalStorage("userData", JSON.stringify(res.data));
 
         this._auth.setDataInLocalStorage('token', res.token);
+
+        console.log(res.token)
 
         this._auth.setUsername(form.value.logUsername);
 

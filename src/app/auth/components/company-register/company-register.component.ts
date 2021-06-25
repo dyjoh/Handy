@@ -295,6 +295,8 @@ public default : string = 'Default';
 
   onSubmit(form: NgForm) {
 
+        
+
       this._api.postTypeRequest('company/register', form.value).subscribe((res: any) => {
       if (res.status) {
         this._auth.setDataInLocalStorage('userData', JSON.stringify(res.data));

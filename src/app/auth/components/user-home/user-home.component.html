@@ -9,7 +9,7 @@
                 </div>
             </div>
             <a href="#"><i class="fas fa-user-cog"></i> Account</a>
-            <a href="#"  [routerLink] = "['']"><i class="fas fa-sign-out-alt" (click)="userLogIn()"></i> Logout</a>
+            <a href="#"  (click)="logOut()"><i class="fas fa-sign-out-alt" ></i> Logout</a>
             
           </div>
           
@@ -27,6 +27,7 @@
                     <div class="col-md-10 header-container">
                         <h2>Hello {{username}},</h2>
                         <h3>we hope you can find what you are looking for!</h3>
+                        <buttton class="btn" routerLink='/user/search'></buttton>
                     </div>
     
                 </div>

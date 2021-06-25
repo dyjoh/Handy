@@ -64,7 +64,7 @@ const companySchema = new Schema({
         required: true
     },
     zipCode: {
-        type: Number,
+        type: String,
         required: true
     }
        

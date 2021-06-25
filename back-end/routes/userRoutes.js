@@ -4,7 +4,7 @@ const router = express.Router();
 const bodyParser = require("body-parser")
 const bcrypt = require("bcryptjs")
 const User = require('../models/UserSchema')
-
+const auth = require('../auth')
 
 
 
@@ -78,6 +78,24 @@ router.post("/register", async (req, res, next) => {
     else {
         payload.errorMessage = "Make sure each field has a valid value.";
         return res.status(200).send(payload);
+    }
+})
+
+router.post('/logout', auth, async (req, res) => {
+    try {
+        res.header("Authorization", 0)
+        req.user.tokens = req.user.tokens.filter((token) => {
+            return token.token !== req.token
+        })
+        console.log(req.user.tokens)
+
+        res.header('Authorization','Bearer ' + req.user.tokens[0]);
+        console.log(user)
+        await req.user.save()
+
+        res.send({status:1, data: req.user, location:'/'})
+    } catch (e) {
+        res.status(500).send({status:0})
     }
 })
 

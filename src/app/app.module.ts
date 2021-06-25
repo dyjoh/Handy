@@ -14,6 +14,7 @@ import { MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTabsModule, MAT_TAB_GROUP } from '@angular/material/tabs';
+import { CompanySearchComponent } from './auth/components/company-search/company-search.component';
  
 
 
@@ -23,6 +24,7 @@ import { MatTabsModule, MAT_TAB_GROUP } from '@angular/material/tabs';
 @NgModule({
   declarations: [
     AppComponent,
+    CompanySearchComponent,
   
     
     

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment'
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpParams} from '@angular/common/http'
 import { map } from 'rxjs/operators'
 
 @Injectable({
@@ -13,7 +13,23 @@ export class ApiService {
   constructor(private _http: HttpClient) { }
 
   getTypeRequest(url: string){
+   
+
     return this._http.get(`${this.baseUrl}${url}`).pipe(map(res => {
+      return res;
+      }));
+  }
+
+  getTypeRequestWithPayload(url: string, payload: any){
+    const keyParam = "search"
+    var value = "";
+    Object.keys(payload).forEach(key => {
+      if (payload[key].search) {
+          value = payload[key];
+      }
+  });    const params = new HttpParams()
+    .set(keyParam, value)
+    return this._http.get(`${this.baseUrl}${url}`, {params}).pipe(map(res => {
       return res;
       }));
   }
