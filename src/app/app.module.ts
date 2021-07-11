@@ -15,6 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTabsModule, MAT_TAB_GROUP } from '@angular/material/tabs';
 import { CompanySearchComponent } from './auth/components/company-search/company-search.component';
+import { CompanySearchResultComponent } from './auth/components/company-search-result/company-search-result.component';
+import { CompanySearchCellComponent } from './company-search-cell/company-search-cell.component';
  
 
 
@@ -25,6 +27,8 @@ import { CompanySearchComponent } from './auth/components/company-search/company
   declarations: [
     AppComponent,
     CompanySearchComponent,
+    CompanySearchResultComponent,
+    CompanySearchCellComponent,
   
     
     

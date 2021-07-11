@@ -1,24 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
   selector: 'app-company-search',
   templateUrl: './company-search.component.html',
-  styleUrls: ['./company-search.component.css']
+  styleUrls: ['./company-search.component.css'],
+  encapsulation: ViewEncapsulation.None,
+
 })
 export class CompanySearchComponent implements OnInit {
 
   timer: any;
-
-  constructor(private _api: ApiService) { }
+  html: string = "";
+  companys: any[] = []
+  constructor(
+    private _api: ApiService,
+    private _auth: AuthService,
+    private _router: Router,
+    private _elementRef: ElementRef
+    ) { }
 
   ngOnInit(): void {
-   
+    this._elementRef.nativeElement.ownerDocument.body.style.backgroundImage = 'linear-gradient(to left, #1e824c , #cfffc1)';
+
     
 
 
 
+  }
+
+  ngAfterViewInit(){
+    console.log(this._elementRef.nativeElement.querySelector("#user"))
   }
 
   onKeyDown($event: any){
@@ -41,9 +56,11 @@ export class CompanySearchComponent implements OnInit {
   search(value: any) {
     console.log(value)
     const results = document.querySelector<HTMLElement>('.resultsContainer');
-    this._api.getTypeRequestWithPayload("company", {search:  value}).subscribe((res) =>{
-      console.log(res)
-      this.outputUsers(res, results)
+    this._api.getTypeRequestWithPayload("company", {"search":  value}).subscribe((res) =>{
+      
+      this.companys = res
+      console.log("companys: ",this.companys)
+      // this.outputUsers(res, results)
       
 
     })
@@ -51,37 +68,51 @@ export class CompanySearchComponent implements OnInit {
 
   
 
-   outputUsers(results: any, container: any){
-    container.value = ""
+//    outputUsers(results: any, container: any){
+//     this.html = ""
 
-    results.forEach((result: any) => {
-        var html= this.createUserHtml(result)
-        container.append(html)
-    })
+//     results.forEach((result: any) => {
+//       var html= this.createUserHtml(result)
+//       this.html += html
+//     })
 
-    if(results.length == 0){
-        container.append("<span class='noResults'> No results found</span>")
-    }
+//     if(results.length == 0){
+//         this.html = "<span class='noResults'> No results found</span>"
+//     }
+// }
+
+
+onClick(id: any){
+  console.log("hit")
+  this._api.getTypeRequest("company/" + id).subscribe((res) =>{
+    this._router.navigate(['user/search/result', id])    
+
+  })
+
 }
+
 
 
 createUserHtml(userData: any): string {
 
-  var name = userData.firstName + " " + userData.lastName;
 
   
 
-  return `<div class='user'>
+  return `<div id="user" class='user' (click)="onClick(${userData._id})">
               <div class='userImageContainer'>
-                  <img src='${userData.profilePic}'>
+                  <img src='../../../../assets/images/pic12.png'>
               </div>
               <div class='userDetailsContainer'>
                   <div class='header'>
-                      <a href='/profile/${userData.username}'>${name}</a>
-                      <span class='username'>@${userData.username}</span>
+                      <h2>${userData.companyName}</h2>
+                      <p class="address">
+                        ${userData.companyAddress}
+                      </p>
+                      
                   </div>
               </div>
           </div>`;
 }
 
 }
+

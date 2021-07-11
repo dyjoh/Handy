@@ -33,6 +33,20 @@ router.get("/", async (req, res, next) => {
 });
 
 
+router.get("/:id", async (req, res, next) => {
+
+    Company.findOne({_id: req.params.id})
+    .then((results) => {
+        res.status(200).send(results)
+    })
+    .catch((e) => {
+        console.log(e)
+        res.sendStatus(400)
+    })
+
+})
+
+
   router.post("/register", async (req, res, next) => {
 
     const {email, password, passwordConf, companyName, companyTypes, companyDescription, companyAddress, zipCode, state } = req.body;
@@ -85,7 +99,7 @@ router.get("/", async (req, res, next) => {
         }
         else {
             // company found
-            if (email == company.email) {
+            if (email == user.email) {
                 payload.errorMessage = "Email already in use.";
             }
             else {

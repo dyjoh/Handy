@@ -17,6 +17,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'company/home', component: CompanyHomeComponent},
   {path: 'user/home', component: UserHomeComponent},
+  {path: 'user/search/result', component: UserHomeComponent},
   {path: 'user/search', component: CompanySearchComponent}
 
   ];

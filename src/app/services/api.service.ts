@@ -29,7 +29,7 @@ export class ApiService {
       }
   });    const params = new HttpParams()
     .set(keyParam, value)
-    return this._http.get(`${this.baseUrl}${url}`, {params}).pipe(map(res => {
+    return this._http.get<Object[]>(`${this.baseUrl}${url}`, {params}).pipe(map(res => {
       return res;
       }));
   }
