@@ -1,0 +1,62 @@
+<div class = 'row '>
+
+    <div class = 'col-md-12' >  
+        <h4 class="company-register"><i class="fas fa-tools"></i> Company Register <i class="fas fa-tools"></i></h4>
+        <form #myform = "ngForm" (ngSubmit) = "onSubmit(myform)" >
+            <div class="column">
+                <div class = 'form-group'>
+                    <input class = 'form-control' type = "text" name = "companyName" placeholder = "Company Name" ngModel>
+                </div>
+                <div class = 'form-group'>
+                    <textarea class = 'form-control' type = "text" name = "companyDescription" placeholder = "Company Description (Optional)" ngModel></textarea>
+                </div>
+                <div class = 'form-group'>
+                    <input class = 'form-control' type = "email" name = "email" placeholder = "Email" ngModel>
+
+                </div>
+                <div class = 'form-group'>
+                    <input class = 'form-control' type = "text" name = "companyAddress" placeholder = "Address" ngModel>
+                </div>
+                <div class="types">
+                    <mat-form-field class="us-states">
+                        <mat-label>Select State</mat-label>
+                        <mat-select [(value)]="selectedState" name='state' ngModel>
+                        <mat-option *ngFor="let state of usStates" [value]="state.name">
+                            {{ state.abbreviation }}
+                        </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                  
+            </div>
+            <div class="column">
+                <div id='content' class="types">
+                    <div class="control-styles">
+                    
+                    <ejs-multiselect id='localData' #local [dataSource]='companyTypes' [fields]='fields' [placeholder]='localWaterMark' name="companyTypes" class="" ngModel></ejs-multiselect>
+                    </div>
+            </div>
+
+            <div class = 'form-group'>
+                <input class = 'form-control' type = "password" name = "password" placeholder = "Password" ngModel>
+            </div>
+            <div class = 'form-group'>
+                <input class = 'form-control' type = "password" name = "passwordConf" placeholder = "Confirm Password" ngModel>
+            </div>
+
+            <div class = 'form-group'>
+                <input class = 'form-control' type = "number" name = "zipCode" placeholder = "Zip Code" ngModel>
+            </div>
+            </div>
+            
+           
+            <input class= 'btn btn-outline-info' type = "submit" value = "Register">
+        </form>
+    </div>
+    
+
+</div>
+    
+
+
+

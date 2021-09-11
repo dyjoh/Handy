@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="container">
+    <div class="searchBarContainer"> 
+      <i class="fas fa-search ">    </i>
+
+
+            <input id="searchBox" type="text" name="searchBox" placeholder="Search for Companies" (keydown)="onKeyDown($event)"/>
+        <div class="resultsContainer col-lg-8 col-md-10" >
+
+          <app-company-search-cell
+          *ngFor="let company of companys"
+          [company]="company"
+          >
+
+          </app-company-search-cell
+            
+          >
+          
+        </div>
+    </div>
+  </div>
+</div>
